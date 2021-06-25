@@ -4,10 +4,9 @@ const axios = require('axios').default
 const parser = require('node-html-parser').parse
 
 router.get('/', function(req, res) {
-
     
     var url = "https://worldofwarcraft.com/pt-br/game/classes"
-
+    var nomeDaClasse = req.query.classe
 
     var requisicao = axios.get(url)
     requisicao.then(function(resposta) {
@@ -30,13 +29,21 @@ router.get('/', function(req, res) {
                 "funcao": c2,
                 "descricao": c3
             }
-
-            classes.push(c)
+            console.log(nomeDaClasse)
+            if(nomeDaClasse != undefined){
+               
+                if(c.classe.includes(nomeDaClasse)){
+                    classes.push(c)
+                }
+            } else {
+                classes.push(c)
+            }
 
             // console.log("Classe: " + c1)
             // console.log("Tipo: " + c2)
             // console.log("Descrição: " + c3)
         }
+
 
         res.json(classes)
     })
