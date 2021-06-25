@@ -27,8 +27,8 @@ router.get('/', function(req, res) {
 
             var c = {
                 "classe": c1,
-                "função": c2,
-                "descrição": c3
+                "funcao": c2,
+                "descricao": c3
             }
 
             classes.push(c)
